@@ -1,0 +1,38 @@
+{%- extends "base.html" %}
+
+{% import "bootstrap/utils.html" as utils %}
+
+{% block content %}
+
+<div class="row mt-4">
+  <div class="col col-md-6 offset-md-3 alert alert-primary bg-danger text-white text-center">
+    <span class="h1">GAME LEADERBOARD</span>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col col-md-6 offset-md-3">
+    <div class="row alert alert-warning bg-dark text-white">
+        <span class="col col-1 mt-0 h1 text-center">#</span>
+        <span class="col col-7 mt-0 h1 border-left border-light">Player</span>
+        <span class="col col-4 mt-0 h1 border-left border-light text-right">Points</span>
+      </div>
+      {% for score in scores %}
+      <div class="row alert alert-warning">
+        <input type="hidden" value={{ score.id }}></input>
+        <span class="col col-1 mt-0 h1 text-center">{{ score.ranking }}</span>
+        <span class="col col-7 mt-0 border-left border-dark h1 text-truncate">{{ score.avatar }}&nbsp;{{ score.playername }}</span>
+        <span class="col col-4 mt-0 border-left border-dark h1 text-right">{{ score.points }}</span>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col col-md-3 offset-md-6">
+    <input type="button" class="h1 mt-0 float-right text-center"
+    value="➕ Add New Entry" onclick="location.href='/player'"/>
+  </div>
+</div>
+{%- endblock %}
+
